@@ -1,8 +1,14 @@
 package com.iswust.model;
 
 import org.springframework.scheduling.support.SimpleTriggerContext;
+import org.springframework.stereotype.Component;
 
-public class user {
+import java.io.Serializable;
+import java.util.List;
+
+
+
+public class User implements Serializable {
     private Integer id;
     private String account;
     private String password;
@@ -10,10 +16,12 @@ public class user {
     private String name;
     private String type;
     private Integer ban;
+    private List<Post> posts;
+    private List<Message> messages;
 
     @Override
     public String toString() {
-        return "user{" +
+        return "User{" +
                 "id=" + id +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
@@ -21,10 +29,12 @@ public class user {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", ban=" + ban +
+                ", posts=" + posts +
+                ", messages=" + messages +
                 '}';
     }
 
-    public user(Integer id, String account, String password, String photo, String name, String type, Integer ban) {
+    public User(Integer id, String account, String password, String photo, String name, String type, Integer ban, List<Post> posts, List<Message> messages) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -32,6 +42,24 @@ public class user {
         this.name = name;
         this.type = type;
         this.ban = ban;
+        this.posts = posts;
+        this.messages = messages;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 
     public void setId(Integer id) {

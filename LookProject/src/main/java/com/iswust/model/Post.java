@@ -1,36 +1,40 @@
 package com.iswust.model;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class post {
+public class Post implements Serializable {
     private Integer id;
     private Timestamp timestamp;
     private String topic;
     private String  content;
-    private String photo;
-    private Integer pointNum;
+    private String pic;
+    private Integer point_num;
     private String type;
 
     @Override
     public String toString() {
-        return "post{" +
+        return "Post{" +
                 "id=" + id +
                 ", timestamp=" + timestamp +
                 ", topic='" + topic + '\'' +
                 ", content='" + content + '\'' +
-                ", photo='" + photo + '\'' +
-                ", pointNum=" + pointNum +
+                ", pic='" + pic + '\'' +
+                ", point_num=" + point_num +
                 ", type='" + type + '\'' +
                 '}';
     }
 
-    public post(Integer id, Timestamp timestamp, String topic, String content, String photo, Integer pointNum, String type) {
+    public Post(Integer id, Timestamp timestamp, String topic, String content, String pic, Integer point_num, String type) {
         this.id = id;
         this.timestamp = timestamp;
         this.topic = topic;
         this.content = content;
-        this.photo = photo;
-        this.pointNum = pointNum;
+        this.pic = pic;
+        this.point_num = point_num;
         this.type = type;
     }
 
@@ -66,20 +70,20 @@ public class post {
         this.content = content;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getPic() {
+        return pic;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
-    public Integer getPointNum() {
-        return pointNum;
+    public Integer getPoint_num() {
+        return point_num;
     }
 
-    public void setPointNum(Integer pointNum) {
-        this.pointNum = pointNum;
+    public void setPoint_num(Integer point_num) {
+        this.point_num = point_num;
     }
 
     public String getType() {
