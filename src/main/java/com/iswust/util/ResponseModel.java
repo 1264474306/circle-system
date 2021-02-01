@@ -1,7 +1,10 @@
 package com.iswust.util;
 
+/**
+ * 将返回数据整合
+ */
 public class ResponseModel {
-    private Integer code;//暂无用处
+    private Integer code;
     private String message;
     private Object data;
 

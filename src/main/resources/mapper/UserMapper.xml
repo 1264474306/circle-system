@@ -5,4 +5,8 @@
     <select id="findAll" resultType="com.iswust.model.User">
         select * from user
     </select>
+
+    <select id="userBan" parameterType="User" resultType="Integer">
+        select ban from user where id = #{id}
+    </select>
 </mapper>

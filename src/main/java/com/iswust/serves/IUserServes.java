@@ -1,7 +1,8 @@
 package com.iswust.serves;
 
-import org.springframework.stereotype.Service;
+import com.iswust.model.User;
 
 
 public interface IUserServes {
+    Integer userBan(User user);
 }

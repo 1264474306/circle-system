@@ -1,23 +1,18 @@
 package com.iswust.model;
 
-import org.springframework.scheduling.support.SimpleTriggerContext;
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
-import java.util.List;
 
 
 
 public class User implements Serializable {
-    private Integer id;
-    private String account;
-    private String password;
-    private String photo;
-    private String name;
-    private Integer type;
-    private Integer ban;
-    private List<Post> posts;
-    private List<Message> messages;
+    private Integer id;//用户id,由后端生成返回
+    private String account;//用户账号,暂时用不上
+    private String password;//用户密码,暂时用不上
+    private String photo;//用户照片路径,由后端生成返回
+    private String name;//用户名称
+    private Integer type;//用户类型(管理员,普通用户
+    private Integer ban;//是否禁止发帖 禁止1 正常0
+
 
     public User() {
     }
@@ -32,12 +27,10 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", ban=" + ban +
-                ", posts=" + posts +
-                ", messages=" + messages +
                 '}';
     }
 
-    public User(Integer id, String account, String password, String photo, String name, Integer type, Integer ban, List<Post> posts, List<Message> messages) {
+    public User(Integer id, String account, String password, String photo, String name, Integer type, Integer ban) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -45,25 +38,8 @@ public class User implements Serializable {
         this.name = name;
         this.type = type;
         this.ban = ban;
-        this.posts = posts;
-        this.messages = messages;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
 
     public void setId(Integer id) {
         this.id = id;

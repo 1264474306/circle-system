@@ -12,6 +12,8 @@ public interface IUserDao {
 
       List<User> findAll();
 
+    Integer userBan(User user);
+
 
 //    User findUser(User user);
 

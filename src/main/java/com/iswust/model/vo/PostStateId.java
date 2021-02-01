@@ -1,4 +1,4 @@
-package com.iswust.model;
+package com.iswust.model.vo;
 
 public class PostStateId {
     private String  state;

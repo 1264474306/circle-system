@@ -15,8 +15,12 @@ public class PostUser extends Post{
                 "} " + super.toString();
     }
 
-    public PostUser(Integer id, Integer uid, Integer theme_id, Timestamp timestamp, String topic, String content, String pic, Integer point_num, String state, User user) {
-        super(id, uid, theme_id, timestamp, topic, content, pic, point_num, state);
+    public PostUser(User user) {
+        this.user = user;
+    }
+
+    public PostUser(Integer id, Integer uid, Integer theme_id, Timestamp timestamp, String topic, String content, String pic_path, Integer point_num, String state, Integer forward_num, User user) {
+        super(id, uid, theme_id, timestamp, topic, content, pic_path, point_num, state, forward_num);
         this.user = user;
     }
 

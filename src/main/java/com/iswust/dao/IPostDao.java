@@ -2,7 +2,8 @@ package com.iswust.dao;
 
 import com.iswust.model.Post;
 
-import com.iswust.model.PostStateId;
+import com.iswust.model.vo.PostPathId;
+import com.iswust.model.vo.PostStateId;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,13 +11,17 @@ import java.util.List;
 @Repository
 public interface IPostDao {
 
-//    void postSave(Post post);
-//
-//    List<Post> postRecommend();
-//
-//    List<Post> postLast();
-//
-//    void postDelete(Post post);
+
 
     List<Post> postState(PostStateId postStateId);
+
+    void postLike(Integer id);
+
+    void postCommit(Post post);
+
+    Integer postFindById(Integer id);
+
+    void postSavePath(PostPathId postPathId);
+
+    void postForward(Integer id);
 }

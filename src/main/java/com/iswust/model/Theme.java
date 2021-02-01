@@ -1,18 +1,14 @@
 package com.iswust.model;
 
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
-import java.util.List;
 
 
 public class Theme implements Serializable {
-    private Integer id;
-    private String topic;
-    private Integer content_num;
-    private Integer browse_num;
-    private String introduce;
-    private List<Post> posts;
+    private Integer id;//话题id,由后端生成返回
+    private String topic;//话题的标题
+    private Integer content_num;//内容数
+    private Integer browse_num;//浏览数
+    private String introduce;//介绍内容
 
     public Theme() {
     }
@@ -24,18 +20,16 @@ public class Theme implements Serializable {
                 ", topic='" + topic + '\'' +
                 ", content_num=" + content_num +
                 ", browse_num=" + browse_num +
-                ", introduce='" + introduce + '\'' +
-                ", posts=" + posts +
+                ", introduce='" + introduce +
                 '}';
     }
 
-    public Theme(Integer id, String topic, Integer content_num, Integer browse_num, String introduce, List<Post> posts) {
+    public Theme(Integer id, String topic, Integer content_num, Integer browse_num, String introduce) {
         this.id = id;
         this.topic = topic;
         this.content_num = content_num;
         this.browse_num = browse_num;
         this.introduce = introduce;
-        this.posts = posts;
     }
 
     public Integer getId() {
@@ -78,11 +72,4 @@ public class Theme implements Serializable {
         this.introduce = introduce;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
 }

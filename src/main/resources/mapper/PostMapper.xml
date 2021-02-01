@@ -6,4 +6,27 @@
     <select id="postState" parameterType="PostStateId" resultType="Post">
         select * from post where state &lt;&gt; #{state} and uid = #{id}
     </select>
+
+    <update id="postLike" parameterType="Integer" >
+        update post set point_num = point_num + 1 where id = #{id}
+    </update>
+
+    <insert id="postCommit" parameterType="Post">
+        <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into post(uid,theme_id,timestamp,topic,content,point_num,state)values(#{uid},#{theme_id},#{timestamp},#{topic},#{content},#{point_num},#{state})
+    </insert>
+
+    <select id="postFindById" parameterType="Integer" resultType="Integer">
+        select id from post where id = #{id}
+    </select>
+
+    <update id="postSavePath" parameterType="PostPathId">
+        update post set pic_path = #{pic_path} where id = #{id}
+    </update>
+
+    <update id="postForward" parameterType="Integer" >
+        update post set forward_num = forward_num + 1 where id = #{id}
+    </update>
 </mapper>
