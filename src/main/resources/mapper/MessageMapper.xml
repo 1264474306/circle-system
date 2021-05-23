@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iswust.dao.IMessageDao">
+    <insert id="messageAdd" parameterType="Message">
+        insert into message(type,stage,judge_id,post_id,launch_uid,receive_uid)values(#{type},#{stage},#{judge_id},#{post_id},#{launch_uid},#{receive_uid})
+    </insert>
+
+    <delete id="messageDelete" parameterType="Integer">
+        delete from message where judge_id = #{id}
+    </delete>
+    
+    <select id="messageManagerGet" parameterType="Integer" resultType="Message">
+        select * from message where stage = 1 or receive_uid = #{id} order by id desc
+    </select>
+
+    <select id="messageUserGet" parameterType="Integer" resultType="Message">
+        select * from message where stage = 0 and receive_uid = #{id} order by id desc
+    </select>
+    
+    <update id="messageUpdateStage" parameterType="Integer">
+        update message set stage = 0 where judge_id = #{judge_id}
+    </update>
+
+    <select id="messageFindByUidPostId" parameterType="Post" resultType="Integer">
+        select id from message where post_id = #{id} and launch_uid = #{uid} and type = "like" order by id desc limit 0,1
+    </select>
+</mapper>

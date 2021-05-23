@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iswust.dao.IThemeDao">
+    <select id="themeGetAll" resultType="com.iswust.model.Theme">
+        select * from theme
+    </select>
+
+    <insert id="themeAdd" parameterType="Theme">
+        <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into theme(topic,content_num,browse_num,introduce)values(#{topic},#{content_num},#{browse_num},#{introduce})
+    </insert>
+
+    <update id="themeContentNum" parameterType="Integer">
+        update theme set content_num = content_num + 1 where id = #{id}
+    </update>
+
+    <update id="themeUnContentNum" parameterType="Integer">
+        update theme set content_num = content_num - 1 where id = #{id}
+    </update>
+
+    <update id="themeBrowse" parameterType="Integer">
+        update theme set browse_num = browse_num + 1 where id = #{id}
+    </update>
+
+    <select id="themeGet" parameterType="Integer" resultType="Theme">
+        select * from theme where id = #{id}
+    </select>
+
+    <select id="themeGetIdByPostId" parameterType="Integer" resultType="Integer">
+        select id from theme where post_id = #{post_id}
+    </select>
+</mapper>

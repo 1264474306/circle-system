@@ -11,11 +11,15 @@
         update post set point_num = point_num + 1 where id = #{id}
     </update>
 
+    <update id="postUnlike" parameterType="Integer" >
+        update post set point_num = point_num - 1 where id = #{id}
+    </update>
+
     <insert id="postCommit" parameterType="Post">
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
             select last_insert_id();
         </selectKey>
-        insert into post(uid,theme_id,timestamp,topic,content,point_num,state)values(#{uid},#{theme_id},#{timestamp},#{topic},#{content},#{point_num},#{state})
+        insert into post(uid,theme_id,timestamp,topic,content,point_num,forward_num,state)values(#{uid},#{theme_id},#{timestamp},#{topic},#{content},#{point_num},#{forward_num},#{state})
     </insert>
 
     <select id="postFindById" parameterType="Integer" resultType="Integer">
@@ -29,4 +33,44 @@
     <update id="postForward" parameterType="Integer" >
         update post set forward_num = forward_num + 1 where id = #{id}
     </update>
+
+    <update id="postUnForward" parameterType="Integer" >
+        update post set forward_num = forward_num - 1 where id = #{id}
+    </update>
+
+    <delete id="postDelete" parameterType="Integer">
+        delete from post where id = #{id}
+    </delete>
+
+    <select id="postGet" parameterType="Integer" resultType="Post">
+        select * from post where id = #{id}
+    </select>
+
+    <select id="postFindPathById" parameterType="Integer" resultType="String">
+        select pic_path from post where id = #{id}
+    </select>
+
+    <select id="postFindAll" parameterType="Post" resultType="Post">
+        select * from post where state = "agree" order by timestamp desc limit 0,#{forward_num}
+    </select>
+
+    <select id="postFindAllByThemeId" parameterType="Post" resultType="Post">
+        select * from post where theme_id = #{theme_id} and state = "agree" order by timestamp desc limit 0,#{forward_num}
+    </select>
+
+    <select id="postFindTopic" parameterType="Integer" resultType="String">
+        select topic from post where id = #{id}
+    </select>
+
+    <update id="postUpdateState" parameterType="Post">
+        update post set state = #{state} where id = #{id}
+    </update>
+
+    <select id="postRecommend" parameterType="java.util.List" resultType="Post">
+        SELECT * from post
+        WHERE id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+        #{id}
+        </foreach>
+    </select>
 </mapper>

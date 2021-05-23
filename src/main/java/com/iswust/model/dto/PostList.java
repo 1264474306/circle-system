@@ -25,3 +25,5 @@ public class PostList {//用于接受List<Post>,因为object不能直接接受Li
         this.post = post;
     }
 }
+
+

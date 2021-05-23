@@ -29,6 +29,7 @@ public class MachineAuditController {
         request.setAttribute("theme_id",post.getTheme_id());
         request.setAttribute("topic",post.getTopic());
 
+
         ArrayList<String> sensitiveWord = ReaderWriteUtil.readFile(contentPath);//读取敏感文本内容
 
         SensitiveServiceUtil sensitiveServiceUtil = new SensitiveServiceUtil();
@@ -44,10 +45,10 @@ public class MachineAuditController {
         if(sensitiveServiceUtil.filter(post.getContent()) == 0){//判断是否敏感
             return "forward:/post/commit";
         } else{
-            return "forward:/post/test";
+            request.setAttribute("state","apply");
+            return "forward:/post/commit";
         }
 
     }
-
 
 }

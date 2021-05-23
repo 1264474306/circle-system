@@ -6,7 +6,23 @@
         select * from user
     </select>
 
-    <select id="userBan" parameterType="User" resultType="Integer">
-        select ban from user where id = #{id}
+    <update id="userBan" parameterType="User">
+        update user set ban = #{ban} where id = #{id}
+    </update>
+
+    <select id="userFindById" parameterType="Integer" resultType="Integer">
+        select id from user where id = #{id}
+    </select>
+
+    <select id="userFindName" parameterType="Integer" resultType="String">
+        select name from user where id = #{id}
+    </select>
+
+    <select id="userFindNamePhoto" parameterType="Integer" resultType="User">
+        select name,photo from user where id = #{id}
+    </select>
+
+    <select id="userGet" parameterType="Integer" resultType="User">
+        select name,photo,id,type,ban from user where id = #{id}
     </select>
 </mapper>

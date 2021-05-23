@@ -1,6 +1,7 @@
 package com.iswust.serves;
 
 import com.iswust.model.Post;
+import com.iswust.model.dto.PostUserLikeTopic;
 
 import java.util.List;
 
@@ -18,5 +19,17 @@ public interface IPostServes {
 
     void postSavePath(StringBuffer pic_path, Integer id);
 
-    void postForward(Post post);
+    void postDelete(Post post);
+
+    void postUnlike(Post post);
+
+    PostUserLikeTopic postGet(Post post);
+
+    String postFindPathById(Integer id);
+
+    List<PostUserLikeTopic> postLatest(Post post);
+
+    List<PostUserLikeTopic> postRecommend(Post post);
+
+    List<PostUserLikeTopic> postHot(Post post);
 }

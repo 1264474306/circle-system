@@ -1,7 +1,6 @@
 package com.iswust.dao;
 
 import com.iswust.model.User;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,11 +9,15 @@ import java.util.List;
 public interface IUserDao {
 
 
-      List<User> findAll();
+    List<User> findAll();
 
-    Integer userBan(User user);
+    void userBan(User user);
 
+    Integer userFindById(Integer id);
 
-//    User findUser(User user);
+    String userFindName(Integer launch_uid);
 
+    User userFindNamePhoto(Integer uid);
+
+    User userGet(Integer id);
 }

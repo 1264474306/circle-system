@@ -12,7 +12,17 @@ public class UserServes implements IUserServes {
     IUserDao userDao;
 
     @Override
-    public Integer userBan(User user) {
-        return userDao.userBan(user);
+    public void userBan(User user) {
+        userDao.userBan(user);
+    }
+
+    @Override
+    public Integer userFindById(Integer id) {
+        return userDao.userFindById(id);
+    }
+
+    @Override
+    public User userGet(User user) {
+        return userDao.userGet(user.getId());
     }
 }

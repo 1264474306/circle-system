@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iswust.dao.IRedisDao">
+    <delete id="redisDeleteDayAll">
+        TRUNCATE table day_hot
+    </delete>
+
+    <insert id="redisSaveDay" parameterType="java.util.List">
+        insert into day_hot(post_id,score,theme_id) values
+        <foreach collection="list" item="RedisIdScore" index="index" separator=",">
+            (#{RedisIdScore.post_id},#{RedisIdScore.score},#{RedisIdScore.theme_id})
+        </foreach>
+    </insert>
+
+    <delete id="redisDeleteWeekAll">
+        TRUNCATE  table week_hot
+    </delete>
+
+    <insert id="redisSaveWeek" parameterType="java.util.List">
+        insert into week_hot(post_id,score,theme_id) values
+        <foreach collection="list" item="RedisIdScore" index="index" separator=",">
+            (#{RedisIdScore.post_id},#{RedisIdScore.score},#{RedisIdScore.theme_id})
+        </foreach>
+    </insert>
+
+</mapper>

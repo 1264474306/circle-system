@@ -14,6 +14,8 @@ public class WebConfig implements WebMvcConfigurer {
     private String uploadFolder;
     @Value("${file.uploadImage}")
     private String uploadImage;
+    @Value("${file.uploadReportImage}")
+    private String uploadReportImage;
 
     /**
      * 配置静态资源地址,也就是图片存储位置
@@ -21,6 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(staticAccessPath).addResourceLocations("file:" + uploadFolder + uploadImage);
+        registry.addResourceHandler(staticAccessPath+"**")
+                .addResourceLocations("file:///" + uploadFolder + uploadImage)
+                .addResourceLocations("file:///" + uploadFolder + uploadReportImage);
     }
 }

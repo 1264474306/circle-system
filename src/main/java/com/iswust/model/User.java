@@ -1,7 +1,7 @@
 package com.iswust.model;
 
 import java.io.Serializable;
-
+import java.util.Objects;
 
 
 public class User implements Serializable {
@@ -13,6 +13,24 @@ public class User implements Serializable {
     private Integer type;//用户类型(管理员,普通用户
     private Integer ban;//是否禁止发帖 禁止1 正常0
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(account, user.account) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(photo, user.photo) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(type, user.type) &&
+                Objects.equals(ban, user.ban);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, account, password, photo, name, type, ban);
+    }
 
     public User() {
     }
